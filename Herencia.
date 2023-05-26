@@ -1,6 +1,6 @@
-
-import {Empleado} from './Herencia/Empleado'
-import {Estudiante} from './Herencia/Estudiante'
+import {Persona} from './Herencia/Persona'
+import {Empleados} from './Herencia/Empleado'
+import {Estudiantes} from './Herencia/Estudiante'
 import {Profesor} from './Herencia/Profesor'
 import {PersonalServicio} from './Herencia/PersonalServicio'
 
