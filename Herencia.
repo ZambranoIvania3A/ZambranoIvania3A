@@ -4,72 +4,72 @@ import {Estudiante} from './Herencia/Estudiante'
 import {Profesor} from './Herencia/Profesor'
 import {PersonalServicio} from './Herencia/PersonalServicio'
 
-export class Empresa {
-public empleados: Empleado[];
-public estudiantes: Estudiante[];
-public profesores: Profesor[];
-public personalServicio: PersonalServicio[];
-
-constructor() {
-    this.empleados=[];
-    this.estudiantes=[];
-    this.profesores=[];
-    this.personalServicio=[];
-}
-
-
-public añadirEmpleado; { 
-    nombre: String;
-    apellido: String;
-    estadoCivil: String;
-    anioIncorporacion: Number;
-    numeroDespacho: String;
-}
-void {
-
-
-        const empleado = new Empleado(  
-            nombre,
-            apellidos,
-            estadoCivil,
-            anioIncorporacion,
-            numeroDespacho,
-        );
-        this.empleados.push(Empleado);
+class Persona {
+    nombre: string;
+    apellidos: string;
+    identificacion: number;
+    estadoCivil: string;
+  
+    constructor(nombre: string, apellidos: string, identificacion: number, estadoCivil: string) {
+      this.nombre = nombre;
+      this.apellidos = apellidos;
+      this.identificacion = identificacion;
+      this.estadoCivil = estadoCivil;
     }
-
-
-    public agregarPersonal Servicio(
-    nombre: string,
-    apellidos: string, 
-    identificacion: string, 
-    estadoCivil: string,
-    seccion: string 
-    void (
-        
-    const personalservicio = new PersonalServicio{ 
-        
-        nombre,
-        apellidos, 
-        Identificacion,
-        estadoCivil,
-        seccion
-        
-        const person this.personalservicio.push(personalservicio
-        
-        public primirInformacion(): vold ( console.log("Empleados (cantidad: this.empleados.forEach((empleado)-> ( empleado.imprimirInformacion(); console.log("");
-        
-        console.log("Estudiantes (cantidad: this.estudiantes.forEach((estudiante) estudiante. ImprimirInformacion(); console.log("");
-        
-        });
-        
-        console.log("Profesores (cantidad);
-        
-        this.profesores.forEach (profesor);
-        
-
-
-
+  }
+  
+  class Empleados extends Persona {
+    anoIncorporacion: number;
+    despacho: number;
+  
+    constructor(nombre: string, apellidos: string, identificacion: number, estadoCivil: string, anoIncorporacion: number, despacho: number) {
+      super(nombre, apellidos, identificacion, estadoCivil);
+      this.anoIncorporacion = anoIncorporacion;
+      this.despacho = despacho;
     }
-   }
-}
+  
+    reasignarDespacho(nuevoDespacho: number): void {
+      this.despacho = nuevoDespacho;
+    }
+  }
+  
+  class Estudiantes extends Persona {
+    curso: string;
+  
+    constructor(nombre: string, apellidos: string, identificacion: number, estadoCivil: string, curso: string) {
+      super(nombre, apellidos, identificacion, estadoCivil);
+      this.curso = curso;
+    }
+  
+    matricularEnCurso(nuevoCurso: string): void {
+      this.curso = nuevoCurso;
+    }
+  }
+  
+  class Profesor extends Persona {
+    departamento: string;
+  
+    constructor(nombre: string, apellidos: string, identificacion: number, estadoCivil: string, departamento: string) {
+      super(nombre, apellidos, identificacion, estadoCivil);
+      this.departamento = departamento;
+    }
+  
+    cambiarDepartamento(nuevoDepartamento: string): void {
+      this.departamento = nuevoDepartamento;
+    }
+  }
+  
+  class PersonalServicio extends Persona {
+    seccion: string;
+  
+    constructor(nombre: string, apellidos: string, identificacion: number, estadoCivil: string, seccion: string) {
+      super(nombre, apellidos, identificacion, estadoCivil);
+      this.seccion = seccion;
+    }
+  
+    cambiarSeccion(nuevaSeccion: string): void {
+      this.seccion = nuevaSeccion;
+    }
+  }
+  
+  
