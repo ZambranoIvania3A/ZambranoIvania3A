@@ -1,0 +1,44 @@
+class Supervisor{ 
+
+private nombre: string;
+private apellido: string;
+private empresa: string;
+private departamento: string;
+
+constructor(nombre: string, edad: number, empresa: string, departamento:string) {
+
+}
+this.nombre = String;
+this.apellido = String;
+this.empresa = String;
+this.departamento = String;
+
+//Getter y Setter
+
+getnombre(); String; {
+    return this.nombre;
+  }
+
+setnombre:(String); {
+    this.nombre = String;
+}
+getapellido(); String; {
+        return this.apellido;
+      }
+    
+setapellido:(String); {
+        this.apellido = String;
+}
+getempresa(); String; {
+    return this.apellido;
+  }
+ setempresa:(String); {
+    this.apellido = String;
+}
+getdepartamento(); String; {
+    return this.apellido;
+  }
+
+setdepartamento:(String);{
+    this.departamento = String;
+}
