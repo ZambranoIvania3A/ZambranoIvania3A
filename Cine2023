@@ -1,0 +1,127 @@
+//CINE 2023--ZAMBRANO SOLORZANO IVANIA DAYANA "3A"
+// Clase Película
+class Pelicula {
+  constructor(public nombre: string) {}
+}
+
+// Clase Producto
+class Producto {
+  constructor(public nombre: string) {}
+}
+
+// Clase Comestible que hereda de Producto
+class Comestible extends Producto {}
+
+// Clase Aperitivo que hereda de Producto
+class Aperitivo extends Producto {}
+
+
+// Clase Sala
+class Sala {
+  private pelicula: Pelicula | null = null;
+  private asientosDisponibles: number;
+
+  constructor(public numero: number, public capacidad: number) {
+    this.asientosDisponibles = capacidad;
+  }
+
+  public asignarPelicula(pelicula: Pelicula): void {
+    this.pelicula = pelicula;
+  }
+
+  public hayAsientosDisponibles(): boolean {
+    return this.asientosDisponibles > 0;
+  }
+
+  public ocuparAsiento(): void {
+    this.asientosDisponibles--;
+  }
+
+  public obtenerAperitivos(): Aperitivo[] {
+    return [
+      new Aperitivo('Palomitas de maíz'),
+      new Aperitivo('Refresco'),
+      new Aperitivo('Nachos'),
+    ];
+  }
+}
+
+// Clase Cliente
+class Cliente {
+  constructor(public nombre: string) {}
+
+  public verPelicula(
+    pelicula: Pelicula,
+    sala: Sala,
+    asiento: number,
+    productos: Producto[]
+  ): void {
+    sala.ocuparAsiento();
+    const aperitivos = sala.obtenerAperitivos();
+
+    console.log('Detalles de la película:');
+    console.log('Nombre del cliente:', this.nombre);
+    console.log('Película escogida:', pelicula.nombre);
+    console.log('Sala de cine:', sala.numero);
+    console.log('Asiento:', asiento);
+    console.log('Aperitivos o accesorios gratuitos:', aperitivos.map((a) => a.nombre));
+    console.log('Productos comestibles:', productos.map((p) => p.nombre));
+  }
+}
+
+// Clase Cine
+class Cine {
+  private static instance: Cine;
+  private peliculas: Pelicula[] = [];
+  private salas: Sala[] = [];
+
+  private constructor() {}
+
+  public static getInstance(): Cine {
+    if (!Cine.instance) {
+      Cine.instance = new Cine();
+    }
+    return Cine.instance;
+  }
+
+  public agregarPelicula(pelicula: Pelicula): void {
+    this.peliculas.push(pelicula);
+  }
+
+  public crearSala(numero: number, capacidad: number): Sala {
+    const sala = new Sala(numero, capacidad);
+    this.salas.push(sala);
+    return sala;
+  }
+
+  public buscarPelicula(nombre: string): Pelicula | null {
+    return this.peliculas.find((pelicula) => pelicula.nombre === nombre) || null;
+  }
+}
+
+// Uso del código
+const cine = Cine.getInstance();
+
+// Agregar películas disponibles
+cine.agregarPelicula(new Pelicula('John Wick'));
+cine.agregarPelicula(new Pelicula('Aladdin'));
+cine.agregarPelicula(new Pelicula('Avengers'));
+cine.agregarPelicula(new Pelicula('Pikachu'));
+
+// Crear sala con capacidad de 100 asientos
+const sala1 = cine.crearSala(1, 100);
+
+// Asignar la película "John Wick" a la sala 1
+const peliculaJohnWick = cine.buscarPelicula('John Wick');
+if (peliculaJohnWick) {
+  sala1.asignarPelicula(peliculaJohnWick);
+}
+
+// Crear cliente y ver película
+const cliente1 = new Cliente('Ivania Zambrano');
+const productosComestibles = [
+  new Comestible('Canguil'),
+  new Comestible('Hot-dog'),
+  new Comestible('Bebidas'),
+];
+cliente1.verPelicula(peliculaJohnWick, sala1, 1, productosComestibles);
