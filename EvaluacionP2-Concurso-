@@ -1,0 +1,103 @@
+//NOMBRE: ZAMBRANO SOLORZANO IVANIA DAYANA -3 "A"-
+//Clase principal //Concurso de programacion FCVT 2023
+class ConcursoParticipante {
+    constructor(
+      public nombre: string,
+      public modalidad: string,
+      public laboratorio: Laboratorio,
+      public computadora: Computadora,
+      public softwareRequerido: string[]
+    ) {}
+    //Detalle por cada participante en el concurso
+    public mostrarDetalle(): void {
+      console.log(`Nombre del participante: ${this.nombre}`);
+      console.log(`Modalidad del concurso: ${this.modalidad}`);
+      console.log(`Laboratorio: ${this.laboratorio.nombre}`);
+      console.log(`Computadora: ${this.computadora.nombre}`);
+      console.log(`Software instalado por el laboratorio: ${this.laboratorio.softwareInstalado}`);
+      console.log(`Software requerido por el participante: ${this.softwareRequerido}`);
+    }
+  }
+  
+  // Clase que representa un laboratorio
+  class Laboratorio {
+    constructor(
+      public nombre: string,
+      public categoria: string,
+      public softwareInstalado: string[]
+    ) {}
+  }
+  
+  // Clase que representa una computadora en un laboratorio
+  class Computadora {
+    constructor(public nombre: string) {}
+  }
+  
+  // Clase que implementa el patrón Singleton para el listado de participantes
+  class ListadoParticipantes {
+    private static instancia: ListadoParticipantes;
+    private participantes: ConcursoParticipante[];
+  
+    private constructor() {
+      this.participantes = [];
+    }
+  
+    public static obtenerInstancia(): ListadoParticipantes {
+      if (!ListadoParticipantes.instancia) {
+        ListadoParticipantes.instancia = new ListadoParticipantes();
+      }
+      return ListadoParticipantes.instancia;
+    }
+  
+    public agregarParticipante(participante: ConcursoParticipante): void {
+      this.participantes.push(participante);
+    }
+  
+    public mostrarDetalleParticipantes(): void {
+      this.participantes.forEach((participante) => {
+        participante.mostrarDetalle();
+      });
+    }
+  }
+  
+  // Ejemplo de uso
+  const listadoParticipantes = ListadoParticipantes.obtenerInstancia();
+  
+  // Crear laboratorios
+  const laboratorioLogicaBasica = new Laboratorio(
+    'Laboratorio de Lógica Básica',
+    'Lógica básica',
+    ['Software A', 'Software B']
+  );
+  const laboratorioLogicaAvanzada = new Laboratorio(
+    'Laboratorio de Lógica Avanzada',
+    'Lógica avanzada',
+    ['Software A', 'Software C']
+  );
+  
+  // Crear computadoras
+  const computadora1 = new Computadora('Computadora 1');
+  const computadora2 = new Computadora('Computadora 2');
+  
+  // Crear participantes
+  const participante1 = new ConcursoParticipante(
+    'Ivania',
+    'Lógica básica',
+    laboratorioLogicaBasica,
+    computadora1,
+    ['Visual Studio']
+  );
+  const participante2 = new ConcursoParticipante(
+    'Dayana',
+    'Lógica avanzada',
+    laboratorioLogicaAvanzada,
+    computadora2,
+    ['Visual Studio', 'PostgreSQL']
+  );
+  
+  // Agregar participantes al listado
+  listadoParticipantes.agregarParticipante(participante1);
+  listadoParticipantes.agregarParticipante(participante2);
+  
+  // Mostrar detalle de los participantes
+  listadoParticipantes.mostrarDetalleParticipantes();
