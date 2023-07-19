@@ -1,0 +1,31 @@
+// pATRON DE DISEÑO SINGLETON
+
+class SupervisorSingleton  {
+        private static instance: SupervisorSingleton | null = null;
+        private employees: string[] = [];
+      
+        private constructor() {}
+      
+        public static getInstance(): SupervisorSingleton {
+          if (!supervisor.instance) {
+            supervisor.instance = new SupervisorSingleton();
+          }
+          return SupervisorSingleton.instance;
+        }
+      
+        public addEmployee(employee: string): void {
+          this.employees.push(employee);
+        }
+      
+        public removeEmployee(employee: string): void {
+          const index = this.employees.indexOf(employee);
+          if (index !== -1) {
+            this.employees.splice(index, 1);
+          }
+        }
+      
+        public getEmployees(): string[] {
+          return this.employees;
+        }
+      }
+      
